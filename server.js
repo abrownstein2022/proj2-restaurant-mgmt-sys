@@ -1,8 +1,12 @@
 //change require to import from
+//package imports
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+//const bodyParser = require('body-parser');
+
+//file imports
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
@@ -46,6 +50,11 @@ app.use(session(sess));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+//Express no longer includes package Bodyparser so we have
+//to import it manually (require) through Terminal
+//in Terminal: $ npm install body-parser
+// included in express.urlencoded
+//app.use(bodyParser({extended:false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -53,10 +62,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // tell the server to use your predefined routes
 app.use(routes);
 
-
-
 // catch-all route
-// any route that doesnmt match any of the defined routes
+// any route that doesn't match any of the defined routes
 app.all('*', (req, res) => {
   console.log('No route found at:', req.path)
   res.render(`errorpage`)

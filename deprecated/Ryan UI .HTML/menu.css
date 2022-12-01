@@ -1,31 +1,25 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
 
-body {
-  background-color: darkolivegreen;
-  padding: 30px 16px;
-}
 
-.body {
-  background-color: aqua;
-}
-
+    * {
+      padding: 0px;
+      margin: 0px;
+      }
+  body {
+      background-color: darkolivegreen;
+      padding: 30px 16px;
+  }
 .title {
-  font-size: 44px; 
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
   margin: 10px;
-  color: white;
+  color: green;
   background-color: black;
-  /* match font in homepage */
-  font-family: 'Times New Roman', Times, serif;
 }
 
 #main {
   width: 500px;
-  background-color: grey;
+  background-color:	grey;
   border: 1px solid black;
   z-index: 20;
   position: fixed;
@@ -46,6 +40,7 @@ body {
 #order {
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  
 }
 
 #orders {
@@ -56,10 +51,10 @@ body {
 
 }
 
-/* place order button */
-#submit-order {
-  /* position: end; */
-  text-align: center;
+.body {
+  background-color: aqua;
+}
 
-
+#submit {
+  position: end;
 }

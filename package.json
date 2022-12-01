@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed-database": "node seeds/seed.js",
-    "watch//!": "(npm run watch VS npm start) This will start the server with nodemon (automatic restart on save)",
-    "watch": "nodemon server.js"
+    "watch//!": "(npm run watch VS npm start) This will start the server with nodemon (automatic restart on save)-beloiw --ext '*' means will watch all files incl handlebars",
+    "watch": "nodemon --ext '*' server.js",
+    "start//!":"used with older versions of heroku - just in case",
+    "start":"node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,12 @@
   },
   "homepage": "https://github.com/abrownstein2022/proj2-restaurant-mgmt-sys#readme",
   "dependencies": {
+    "body-parser": "^1.20.1",
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.8"
   },

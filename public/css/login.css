@@ -1,0 +1,37 @@
+body {
+    background-color: darkolivegreen;
+    padding: 30px 16px;
+    font-weight: bold;
+    min-height: 100%;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  }
+
+  html, body{
+    height: 100%;
+  }
+a, a:link{
+    color: rgb(203, 255, 113);
+}
+h1 {
+    color: white;
+    font-weight: bold;
+}
+
+.header-container {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header-container img {
+    width: 10%;
+}
+
+/* .header-container h1 {
+    color: white !important;
+} */
+
+a:hover {
+    color: white;
+}

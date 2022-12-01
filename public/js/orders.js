@@ -10,7 +10,28 @@ var cookieAddbtn = document.getElementById("cookieAdd-9");
 var fruitSaladAddbtn = document.getElementById("fruitSaladAdd-8");
 
 
+function finalTotal() {
+    let beefTotal = document.querySelector("#t-1").textContent;
+    let turkeyTotal = document.querySelector("#t-2").textContent;
+    let veggieTotal = document.querySelector("#t-3").textContent;
+    let friesTotal = document.querySelector("#t-4").textContent;
+    let chipsTotal = document.querySelector("#t-5").textContent;
+    let sodaTotal = document.querySelector("#t-6").textContent;
+    let waterTotal = document.querySelector("#t-7").textContent;
+    let cookieTotal = document.querySelector("#t-9").textContent;
+    let fruitSaladTotal = document.querySelector("#t-8").textContent;
 
+    // let finalTotal = beefTotal + turkeyTotal + veggieTotal + friesTotal + chipsTotal + sodaTotal + waterTotal + cookieTotal + fruitSaladTotal;
+    let items = [beefTotal , turkeyTotal , veggieTotal , friesTotal , chipsTotal , sodaTotal , waterTotal , cookieTotal , fruitSaladTotal]
+    let total = 0
+
+    items.forEach(item => {
+        console.log('parsing item:', item)
+        total += item ? parseInt(item.replace('$', '')) : 0
+    }) // "$2.00" => "2.00" => 2
+
+    document.querySelector("#finalTotal").textContent =  '$' + total + ".00";  ;
+}
 
 function beefOrder() {
     // get quantity from dropdown saves to variable quantity   
@@ -21,7 +42,8 @@ function beefOrder() {
     let beefTotal = quantity * 6;
     
     document.querySelector("#a-1").textContent = quantity;
-    document.querySelector("#t-1").textContent = beefTotal;  
+    document.querySelector("#t-1").textContent = '$' + beefTotal + ".00";  
+    finalTotal()
 }
 
 beefAddbtn.addEventListener("click", beefOrder);
@@ -35,7 +57,9 @@ function turkeyOrder() {
     let turkeyTotal = quantity * 5;
     
     document.querySelector("#a-2").textContent = quantity;
-    document.querySelector("#t-2").textContent = turkeyTotal;  
+    document.querySelector("#t-2").textContent = '$' + turkeyTotal + ".00";  
+    finalTotal()
+
 }
 
 turkeyAddbtn.addEventListener("click", turkeyOrder);
@@ -49,7 +73,8 @@ function veggieOrder() {
     let veggieTotal = quantity * 5;
     
     document.querySelector("#a-3").textContent = quantity;
-    document.querySelector("#t-3").textContent = veggieTotal;  
+    document.querySelector("#t-3").textContent = '$' + veggieTotal + ".00";   
+    finalTotal()
 }
 
 veggieAddbtn.addEventListener("click", veggieOrder);
@@ -63,7 +88,8 @@ function friesOrder() {
     let friesTotal = quantity * 2;
     
     document.querySelector("#a-4").textContent = quantity;
-    document.querySelector("#t-4").textContent = friesTotal;  
+    document.querySelector("#t-4").textContent = '$' + friesTotal + ".00";   
+    finalTotal()
 }
 
 friesAddbtn.addEventListener("click", friesOrder);
@@ -77,7 +103,8 @@ function chipsOrder() {
     let chipsTotal = quantity * 1;
     
     document.querySelector("#a-5").textContent = quantity;
-    document.querySelector("#t-5").textContent = chipsTotal;  
+    document.querySelector("#t-5").textContent = '$' + chipsTotal+  ".00";    
+    finalTotal()
 }
 
 chipsAddbtn.addEventListener("click", chipsOrder);
@@ -88,10 +115,11 @@ function sodaOrder() {
 
     console.log(quantity);
 
-    let sodaTotal = quantity * 1.50;
+    let sodaTotal = quantity * 2;
 
     document.querySelector("#a-6").textContent = quantity;
-    document.querySelector("#t-6").textContent = sodaTotal;
+    document.querySelector("#t-6").textContent = '$' + sodaTotal + ".00";  
+    finalTotal()
 }
 
 sodaAddbtn.addEventListener("click", sodaOrder);
@@ -102,11 +130,12 @@ function waterOrder() {
 
     console.log(quantity);
 
-    let waterTotal = quantity * 1.25;
+    let waterTotal = quantity * 1;
 
     document.querySelector("#a-7").textContent = quantity;
-    document.querySelector("#t-7").textContent = waterTotal;
+    document.querySelector("#t-7").textContent ='$' +  waterTotal + ".00";  
 
+    finalTotal()
 }
 
 waterAddbtn.addEventListener("click", waterOrder);
@@ -120,8 +149,9 @@ function cookieOrder() {
     let cookieTotal = quantity * 2;
 
     document.querySelector("#a-9").textContent = quantity;
-    document.querySelector("#t-9").textContent = cookieTotal;
+    document.querySelector("#t-9").textContent = '$' + cookieTotal + ".00"; 
 
+    finalTotal()
 }
 
 cookieAddbtn.addEventListener("click", cookieOrder);
@@ -135,12 +165,20 @@ function fruitSaladOrder() {
     let fruitSaladTotal = quantity * 2;
 
     document.querySelector("#a-8").textContent = quantity;
-    document.querySelector("#t-8").textContent = fruitSaladTotal;
+    document.querySelector("#t-8").textContent = '$' + fruitSaladTotal + ".00"; 
 
+    finalTotal()
 }
 
+
 fruitSaladAddbtn.addEventListener("click", fruitSaladOrder);
+
+
+// finalTotal();
+
+
 /*
+
 var qty1El = document.getElementById('qty1');
 
 

@@ -1,60 +1,69 @@
-const loginFormHandler = async (event) => {
-  event.preventDefault();
+// const loginFormHandler = async (event) => {
+//   event.preventDefault();
 
-  // Collect values from the login form
-  const email = document.querySelector('#email-login').value.trim();
-  const password = document.querySelector('#password-login').value.trim();
+//   // Collect values from the login form
+//   const username = document.querySelector('#username-login').value.trim();
+//   const password = document.querySelector('#password-login').value.trim();
 
-  if (email && password) {
-    // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+//   if (username && password) {
+//     // Send a POST request to the API endpoint
+//     const response = await fetch('/api/users/login', {
+//       method: 'POST',
+//       body: JSON.stringify({ username, password }),
+//       headers: { 'Content-Type': 'application/json' },
+//     });
 
-    if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      document.location.replace('/profile');
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
+//     if (response.ok) {
+//       // If successful, redirect the browser to the profile page
+//       //document is an object with propterties that have access to a handful of the properties of the browser or window 
+//       //but ones especially needed for navigation
+//       //Location is the object containing the history of URLs you've been to (ie back button) 
+//       //replace current entry with profile
+//       document.location.replace('/profile');  //triggers server route called profile
+//     } else {
+//       alert(response.statusText);
+//     }
+//   }
+// };
 
-const signupFormHandler = async (event) => {
-  event.preventDefault();
+// const signupFormHandler = async (event) => {
 
-  const name = document.querySelector('#name-signup').value.trim();
-  const email = document.querySelector('#email-signup').value.trim();
-  const password = document.querySelector('#password-signup').value.trim();
+//   event.preventDefault();
 
-  if (name && email && password) {
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+//   console.log("Signup Button Clicked!");
 
-    if (response.ok) {
-      document.location.replace('/profile');
-    } else {
-      alert(response.statusText);
-    }
-  }
-};
+//   const name = document.querySelector('#name-signup').value.trim();
+//   const username = document.querySelector('#username-signup').value.trim();
+//   const password = document.querySelector('#password-signup').value.trim();
 
-// var signupButton = document.querySelector('.signup-button')
-// var registerContainer = document.querySelector('.register-container')
+//   console.log(JSON.stringify({ name, username, password }));
 
-// signupButton.addEventListener("click", function() {
-//   registerContainer.style.display = "flex"
-// })
+//   if (name && username && password) {
+//     const response = await fetch('/api/users', {
+//       method: 'POST',
+//       body: JSON.stringify({ name, username, password }),
+//       headers: { 'Content-Type': 'application/json' },
+//     });
 
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+//     if (response.ok) {
+//       document.location.replace('/register');
+//     } else {
+//       alert(response.statusText);
+//     }
+//   }
+// };
 
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+// // var signupButton = document.querySelector('.signup-button')
+// // var registerContainer = document.querySelector('.register-container')
+
+// // signupButton.addEventListener("click", function() {
+// //   registerContainer.style.display = "flex"
+// // })
+
+// document
+//   .querySelector('.login-form')
+//   .addEventListener('submit', loginFormHandler);
+
+// document
+//   .querySelector('.signup-form')
+//   .addEventListener('submit', signupFormHandler);

@@ -2,6 +2,10 @@ const router = require('express').Router();
 const { Project, User, Customers } = require('../models');
 const withAuth = require('../utils/auth');
 const log = require('../utils/logger')
+
+
+//! handlebars does not render layouts directly - can render a view inside of a layout
+//! never call res.render('main') or res.render('layout')
 //! homeRoutes.js should only be used for handlebar view routes
 
 
@@ -13,29 +17,16 @@ const log = require('../utils/logger')
 // they will be visible to anyone
 // no "withAuth" needed
 router.get('/', async (req, res) => {
-  console.log("path: '/'")
-  try {
-    // Get all projects and JOIN with user data
-    // const projectData = await Project.findAll({
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['name'],
-    //     },
-    //   ],
-    // });
+  console.log("path: '/' => rendering 'welcome.handlebars'")
 
-    // // Serialize data so the template can read it
-    // const projects = projectData.map((project) => project.get({ plain: true }));
+  res.render('welcome', { 
+    logged_in: req.session.logged_in 
+  });
 
-    // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
+
+
+
 
 
 //this open handlebars (html) page for the menu for ordering
@@ -43,93 +34,63 @@ router.get('/menu', async (req, res) =>{
   res.render('menu')
 })
 
-// router.get('/project/:id', async (req, res) => {
-//   try {
-//     // const projectData = await Project.findByPk(req.params.id, {
-//     //   include: [
-//     //     {
-//     //       model: User,
-//     //       attributes: ['name'],
-//     //     },
-//     //   ],
-//     // });
 
-//     // const project = projectData.get({ plain: true });
 
-//     res.render('project', {
-//       // ...project,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/view-orders', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  // if (req.session.logged_in) {
+  //   res.redirect('/profile');
+  //   return;
+  // }
+  //! on the register page, pass the value of "show_register" to the login page, to switch between
+  //! register and login pages
+  res.render('vieworder', { order_array: 'pass data here' }); // show registration section
+  // res.render('login', { show_register: false }); // show login section
+});
+
 
 // Use withAuth middleware to prevent access to route
-router.get('/orders', withAuth, async (req, res) => {
+router.get('/place-order', withAuth, async (req, res) => {
   try {
     // TODO:
     //* Find the logged in users data, and their list of orders
     //* render orders page with array of order data
 
-    const userData = await Customers.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      // include: [{ model: Project }],
-    });
+    // const userData = await Customers.findByPk(req.session.user_id, {
+    //   attributes: { exclude: ['password'] },
+    //   // include: [{ model: Project }],
+    // });
 
-    const user = userData.get({ plain: true });
+    // const user = userData.get({ plain: true });
 
-    res.render('orders', {
-      ...user,
+    res.render('placeorder', {
+      layout: 'main', // layout: 'special-layout' => special-layout.handlebars
+      // ...user,
       //! pass array of orders here
-      logged_in: true
+      // logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/orders/:id', withAuth, async (req, res) => {
-  try {
-    const myVariable = req.params.id
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
-    });
 
-    const user = userData.get({ plain: true });
 
-    res.render('profile', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// register should be public to all users - no withAuth middleware
+router.get('/register', (req, res) => {
+  console.log("path: '/' => rendering 'register.handlebars'")
 
-router.get('/register', withAuth, (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/homepage');
-    return;
-  }
+  // // If the user is already logged in, redirect the request to another route
+  // if (req.session.logged_in) {
+  //   res.redirect('/homepage');
+  //   return;
+  // }
   //! on the register page, pass the value of "show_register" to the login page, to switch between
   //! register and login pages
-  res.render('login', { show_register: true }); // show registration section
+  res.render('register', { show_register: true }); // show registration section
   // res.render('login', { show_register: false }); // show login section
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/homepage');
-    return;
-  }
-
-  res.render('login', { show_register: true });
-});
 
 //route for view orders for logged in customer
 // router.get("/view-order", async (req, res) => {
@@ -181,16 +142,23 @@ router.get('/login', (req, res) => {
 // });
 
 
-router.get('/view-order', (req, res) => {
+
+router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
+  console.log("path: '/login' => rendering 'login.handlebars'")
+
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    console.log("path: '/login' => already logged in => rendering 'homepage.handlebars'")
+
+    res.render('homepage')
     return;
   }
   //! on the register page, pass the value of "show_register" to the login page, to switch between
   //! register and login pages
-  res.render('vieworder', { order_array: 'pass data here' }); // show registration section
+  res.render('login'); // show registration section
   // res.render('login', { show_register: false }); // show login section
 });
+
+// logout just sends a GET request to the API route => /api/users/logout
 
 module.exports = router;
