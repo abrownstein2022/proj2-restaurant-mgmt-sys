@@ -64,7 +64,7 @@ router.get('/place-order', withAuth, async (req, res) => {
     // const user = userData.get({ plain: true });
 
     res.render('placeorder', {
-      layout: 'main', // layout: 'special-layout' => special-layout.handlebars
+      layout: false, // layout: 'special-layout' => special-layout.handlebars
       // ...user,
       //! pass array of orders here
       // logged_in: true

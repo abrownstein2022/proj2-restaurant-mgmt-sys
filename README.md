@@ -1,5 +1,7 @@
 # Restaurant Management System (Interactive Full-Stack Project)
 
+[DEMO](proj2-restaurant-mgmt-sys.herokuapp.com)
+
 ![license](https://img.shields.io/badge/license-MIT-black)
 
 ## Table of Contents

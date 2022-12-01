@@ -4,8 +4,13 @@
 }
 
 body {
-  background-color: darkolivegreen;
   padding: 30px 16px;
+}
+
+/* Make sure html and body are the full height of the window */
+html, body {
+  background-color: darkolivegreen;
+  height: 100% !important;
 }
 
 .body {
