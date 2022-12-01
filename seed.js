@@ -4,14 +4,14 @@
 // import sequelize from '../config/connection.js';
 // import {Customers, ItemTypes, Items, Orders, OrderItems} from '../models/index.js';
 
-const sequelize = require('../config/connection');
-const {Customers, ItemTypes, Items, Orders, OrderItems} = require('../models');
+const sequelize = require('./config/connection');
+const {Customers, ItemTypes, Items, Orders, OrderItems} = require('./models');
 
-const customersSeedData = require('./customersSeedData.json');
-const itemsSeedData = require('./itemsSeedData.json');
-const itemtypesSeedData = require('./itemtypesSeedData.json');
-const ordersSeedData = require('./ordersSeedData.json');
-const orderitemsSeedData = require('./orderitemsSeedData.json');
+const customersSeedData = require('./seeds/customersSeedData.json');
+const itemsSeedData = require('./seeds/itemsSeedData.json');
+const itemtypesSeedData = require('./seeds/itemtypesSeedData.json');
+const ordersSeedData = require('./seeds/ordersSeedData.json');
+const orderitemsSeedData = require('./seeds/orderitemsSeedData.json');
 
 
 //! JS does not allow json file imports but, can use 'assert' statement to allow
