@@ -140,7 +140,6 @@ router.post("/login", async (req, res) => {
     // res.status(200).json('Logged in!')
     //res.render('homepage')
     //log this user in
-
     res.render('homepage',{
         layout: false,
         username: userData.customer_login,

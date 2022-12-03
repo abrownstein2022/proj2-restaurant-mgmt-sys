@@ -46,3 +46,19 @@ p {
 a:hover {
     color: white;
 }
+
+/* - Table Overflow Wrapper used to allow table to maintain its full-width on small screens */
+.table-overflow-wrapper{
+    max-width: 100%;
+    overflow: auto;
+}
+/* Make the table full width of the container */
+table{
+    position: relative;
+    width: 100% !important;
+}
+/* Add some padding to the td (vieworders.handlebars) */
+td{
+    padding: .5rem 1rem;
+    color: white;
+}

@@ -37,6 +37,14 @@ Orders.hasMany(OrderItems, {
   onDelete: 'CASCADE',
 });
 
+/**
+ * A list of associations to eagerly load using a left join (a single association is also supported).
+ *  Supported is either { include: Model1 }, { include: [ Model1, Model2, ...]}, 
+ * { include: [{ model: Model1, as: 'Alias' }]} or { include: [{ all: true }]}. 
+ * If your association are set up with an as (eg. X.hasMany(Y, { as: 'Z' }, you need to specify 
+ * Z in the as attribute when eager loading Y).
+ */
+
 module.exports = {ItemTypes, Customers, Items, Orders, OrderItems};
 // export {
 //   ItemTypes,
