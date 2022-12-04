@@ -139,23 +139,23 @@ Once logged in, the customer is sent to the landing page with 3 buttons: "Place 
 "Logout" button
 1. Customers press this button to securely log out of the application.
 
+**Please review to the screenshots below to view our application:**
 ```
+![example image welcome page with login and register links](./public/images/welcome-page.jpg)
 
-![example image login page](./assets/images/proj2-screen1.png)
+![example image login page](./public/images/login-page.jpg)
 
-![example image register page](./assets/images/proj2-screen2.png)
+![example image register page](./public/images/register-page.jpg)
 
-![example image landing page](./assets/images/proj2-screen3.png)
+![example image landing page](./public/images/landing-page.jpg)
 
-![example image place order page menu](./assets/images/proj2-screen4.png)
+![example image place order page menu](./public/images/place-order-page.jpg)
 
-![example image place order page order details](./assets/images/proj2-screen4.png)
+![example image place order page order details](./public/images/tobedone.jpg)
 
-![example image view past orders page](./assets/images/proj2-screen5.png)
+![example image view past orders page](./public/images/view-orders-page.jpg)
 
-![example image view logout page](./assets/images/proj2-screen5.png)
-
-
+![example image view logout page](./public/images/logout-page.jpg)
 
 ## Credits
 
