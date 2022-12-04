@@ -197,6 +197,7 @@ async (req, res) => {
 
     res.render('placeorder', {
       layout: false, // layout: 'special-layout' => special-layout.handlebars
+      customer_id: req.session.customer_id
       // ...user,
       //! pass array of orders here
       // logged_in: true

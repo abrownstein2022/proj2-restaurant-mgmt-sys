@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <input type="hidden" id="customer_id" value="{{customer_id}}" />
   <h1>Group 5's Burgers and Fries - Place Your Order</h1>
   <div id="style" class="container">
     <div class="columns features">
@@ -248,6 +249,37 @@
       </div>
 
 
+      
+      <div class="column is-2">
+        <div class="card is-shady">
+          <div class="card-image">
+            <figure class="image is-4by4">
+              <img src="/images/fruitsalad.jpeg" alt="Photo of fresh cut fruit in a bowl" class="modal-button"
+                data-target="modal-image4" />
+            </figure>
+          </div>
+          <div class="card-content modal-button" data-target="modal-card2">
+            <div class="content">
+              <h4>Fruit Salad</h4>
+              <h3><span>$2.00</span></h3>
+              <p>A mixture of seasonal fruits, hand-cut to perfection and always fresh. Made in small batches.</p>
+              <div id="add">
+                <span class="button is-success is-small is-rounded" id="fruitSaladAdd-8" data-target="modal-image2">Add
+                  to Order</span>
+                <div class="select is-small">
+                  <select id="qty8">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="column is-2 modal-button" data-target="modal-card">
         <div class="card is-shady">
           <div class="card-image">
@@ -268,36 +300,6 @@
                   Order</span>
                 <div class="select is-small">
                   <select id="qty9">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-2">
-        <div class="card is-shady">
-          <div class="card-image">
-            <figure class="image is-4by4">
-              <img src="/images/fruitsalad.jpeg" alt="Photo of fresh cut fruit in a bowl" class="modal-button"
-                data-target="modal-image4" />
-            </figure>
-          </div>
-          <div class="card-content modal-button" data-target="modal-card2">
-            <div class="content">
-              <h4>Fruit Salad</h4>
-              <h3><span>$2.00</span></h3>
-              <p>A mixture of seasonal fruits, hand-cut to perfection and always fresh. Made in small batches.</p>
-              <div id="add">
-                <span class="button is-success is-small is-rounded" id="fruitSaladAdd-8" data-target="modal-image2">Add
-                  to Order</span>
-                <div class="select is-small">
-                  <select id="qty8">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
