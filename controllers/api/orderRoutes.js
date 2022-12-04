@@ -3,7 +3,8 @@ const { Orders, OrderItems, Items } = require("../../models");
 const withAuth = require("../../utils/auth");
 const logger = require("../../utils/logger.js");
 
-//Get list of current customer's orders
+//&                                                                                                             
+//$ Get list of current customer's orders
 router.get("/view-orders", async (req, res) => {
   let orderData = await Orders.find({
     where: {
@@ -16,11 +17,22 @@ router.get("/view-orders", async (req, res) => {
   });
 });
 
-//Place order
+//&                                                                                                             
+//$ Place order
 router.post("/place-order", async (req, res) => {
   try {
     // get the current user
-    let thisUser = req.session.username;
+    let { customer_id } = req.session
+
+
+    //+ Get the id from the orders table
+    let orderId = await Orders.create({customer_id})
+
+    let orderItems = await OrderItems.create
+
+
+
+
 
     // get the id of the order from handlebars name value
     let thisOrderId = req.body.customerOrder;
@@ -28,7 +40,7 @@ router.post("/place-order", async (req, res) => {
     // grab the array of orders for this user
     let existingOrderIds = await Customers.findOne({
       where: {
-        customer_login: thisUser,
+        customer_id
       },
     });
 
@@ -38,7 +50,7 @@ router.post("/place-order", async (req, res) => {
     // update the customers table
     await Customers.update({
       where: {
-        customer_login: thisUser,
+        customer_id
       },
       orders: newOrders,
     });

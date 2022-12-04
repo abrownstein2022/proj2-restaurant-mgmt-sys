@@ -36,16 +36,31 @@ h1 {
   font-family: 'Times New Roman', Times, serif;
 }
 
+/* ~ THIS IS THE FLOATING MENU PAGE ON placeorder.handlebars */
 #main {
-  width: 500px;
-  background-color: grey;
+  width: 100vw;
+  background-color: black;
   border: 1px solid black;
   z-index: 20;
   position: fixed;
-  right: 100px;
+  right: -95vw;
   top: 150px;
   height: 750px;
+  transition: .3s;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
 }
+
+#main:hover{
+  right: 0vw;
+}
+
+#main table{
+  width: 90%;
+}
+
+
 
 #add {
   display: flex;
@@ -73,4 +88,8 @@ h1 {
 #submit-order {
   /* position: end; */
   text-align: center;
+}
+
+#order-table{
+  border: 3px solid red;
 }

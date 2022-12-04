@@ -30,7 +30,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-
 /* 
 {
 	"customer_first_name":"abcdef",
@@ -39,7 +38,6 @@ router.post('/', async (req, res) => {
 	"customer_password":""
 }
 */
-
 //Post route for login
 // POST localhost:3001/api/users/login
 router.post('/register', async (req, res) => {
@@ -64,13 +62,17 @@ router.post('/register', async (req, res) => {
     // let userExists = await Customers.findOne(req.body)
     // create the customer record in Customer model
     let updatedUserData = await Customers.create(req.body)
-    //- check to see if the user is in the db first
+    //- TODO: check to see if the user is in the db first
 
     //  pass the whole req.body object into the query, because it matches the schema
     //  this becomes `INSERT INTO Customers (fname, lname, phone) VALUES ('john', 'wick', null)
 
     //  if db interaction threw an error, all steps below are skipped
-    res.status(200).json(updatedUserData)
+    req.session.username = updatedUserData.customer_login
+    req.session.customer_id = updatedUserData.customer_id
+    req.session.logged_in = true
+  //12/3/22 alexis added layout:false below (yay this is correct!)
+    res.render('homepage', {layout: false, username: updatedUserData.customer_login})
     /*
     100 =>
     2xx => Success
@@ -78,12 +80,7 @@ router.post('/register', async (req, res) => {
     4xx => user input errror
     5xx => server error
     */
-
-
-
-
-
-
+  
     // always return something, at least a status
     // res.status(200).json('ayo')
     // let res = {}
@@ -94,11 +91,9 @@ router.post('/register', async (req, res) => {
     //   userData: someData
     // })
   } catch (err) {
-    res.status(400).json(err);
+    res.render('errorpage', { error: err?.message ?? err.toString() })
   }
 });
-
-
 
 //Post route for login
 // POST localhost:3001/api/users/login
@@ -158,13 +153,9 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
-
-
 //Post route for logging out
 // this route is triggered from a link element, which always send GET requests
 router.get("/logout", (req, res) => {
-
     req.session.destroy(() => {
       res.status(204).end();
     });

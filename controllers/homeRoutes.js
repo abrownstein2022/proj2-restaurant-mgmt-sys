@@ -2,10 +2,11 @@ const router = require('express').Router();
 const { Customers, Orders, OrderItems, Items } = require('../models');
 const withAuth = require('../utils/auth');
 const log = require('../utils/logger')
+//! need next 2 lines for raw sequelize query to get view orders page to work (3 table joins)
 const sequelize = require('sequelize');
 const db = require('../config/connection');
+//! additional library to format order date in handlebars display in view-orders
 const dateFns = require('date-fns')
-
 
 //! handlebars does not render layouts directly - can render a view inside of a layout
 //! never call res.render('main') or res.render('layout')
@@ -27,8 +28,6 @@ const dateFns = require('date-fns')
 
 // = Plain white
 
-
-
 // empty routes are treated as an empty path (/) and typically used to show the homepage
 // localhost:3001
 // same as localhost:3001/
@@ -37,7 +36,7 @@ const dateFns = require('date-fns')
 // they will be visible to anyone
 // no "withAuth" needed
 //&                                                                                                                   
-//$ root route of server '/' should render welcome page
+//$ root route of server '/' should render welcome page that only shows login and register links
 router.get('/', async (req, res) => {
   console.log("path: '/' => rendering 'welcome.handlebars'")
 
@@ -46,6 +45,18 @@ router.get('/', async (req, res) => {
   });
 
 });
+
+// alexis added 12/3/22 to be able to route back to homepage (landing page after login) from other pages
+router.get('/homepage', withAuth, async (req, res) => {
+  console.log("path: '/' => rendering 'homepage.handlebars'")
+
+  res.render('homepage', { 
+    layout: false,
+    logged_in: req.session.logged_in 
+  });
+
+});
+//end alexis 12/3/22
 
 //&                                                                                                                   
 //&this open handlebars (html) page for the menu for ordering
@@ -140,7 +151,7 @@ try{
       type: sequelize.QueryTypes.SELECT
     }
   )
-  // wont execute until above is finished, and did not throw errors
+  // won't execute until above is finished, and if no errors thrown
   order_array = order_array.map(item => ({
     ...item,
     line_cost: item.quantity * item.item_cost,
@@ -156,7 +167,7 @@ try{
 //     console.log(order_array);
 // })
 
-//- this is replace with a try/catch block
+//- this is replaced with a try/catch block
 // .catch((error) => {
 //     console.error('Failed to read data : ', error);
 // });
@@ -168,7 +179,9 @@ try{
 
 //&                                                                                                                   
 //$ Use withAuth middleware to prevent access to route
-router.get('/place-order', withAuth, async (req, res) => {
+router.get('/place-order', 
+// withAuth,                  //~ COMMENTED OUT FOR TESTING 
+async (req, res) => {
   try {
     // TODO:
     //* Find the logged in users data, and their list of orders
@@ -207,7 +220,9 @@ router.get('/register', (req, res) => {
   // }
   //! on the register page, pass the value of "show_register" to the login page, to switch between
   //! register and login pages
-  res.render('register', { show_register: true }); // show registration section
+  //alexis 12/3/22 added layout:false below
+  res.render('register', {show_register: true }); // show registration section
+  //res.render('register', {layout: false, show_register: true }); // show registration section
   // res.render('login', { show_register: false }); // show login section
 });
 
