@@ -1,3 +1,5 @@
+
+
     var globalVar = 'yo'// axios is an NPM package that simplifies http requests
 // const axios = require('axios')
 
@@ -270,7 +272,8 @@ submitButton.addEventListener("click", async ()=>{
         // let beef_total = document.querySelector("#t-1").textContent // '$1.00'
         // let beef_total = parseInt(document.querySelector("#t-1").textContent.replace('.00', '').replace('$',''))
         let customer_id = document.getElementById('customer_id').value
-        await fetch('/api/orders/place-order', {
+        
+        let response = await fetch('/api/orders/place-order', {
             method: 'POST',
             mode: 'cors', // cross-origin request security - strict security on requests from other domains / sites (BLOCKED)
             headers: {
@@ -281,14 +284,22 @@ submitButton.addEventListener("click", async ()=>{
                 items_ordered: orderObject.items  // { 'beef': 3 }
             })
         })
+
         console.log('sent order data to API.')
+        if(response.status === 200){
+            console.log('success!')
+            window?.location?.replace('/view-orders')
+        }else{
+            console.log('there was an error sending data to API')
+        }
 
     }catch(err){
         console.log('place-roder-error:', err)
     }
 });
 
-
+//we're not using axios because we are in the browser and have access to the browser fetch
+//axios is an npm package so we don't need since we're using the browswer
 // axios.get('route')
 // axios.post('route', {data: {}, headers: {}})
 

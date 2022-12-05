@@ -52,48 +52,6 @@ label {
     color: white;    
 }
 
-/* label {
-     display: inline-block; 
-    float: left;
-    clear: left;
-    width: 250px;
-    text-align: right;
-}
-
-input {
-  display: inline-block; 
-  float: left;
-}  */
-
-
-/* .login-container  {
-    color: white;
-    font-weight: bold;
-    
-}
-
-.login-container input {
-    width: 10%;
-    clear: both;
-  } */
-
-/* .login-container label
-{
-    float:left;
-    width: 20%;
-    text-align:right;
-    }
-    
-.login-container input
-{
-    float:left;
-    width: 10%;
-    } */
-
-/* .header-container h1 {
-    color: white !important;
-} */
-
 a:hover {
     color: white;
 }

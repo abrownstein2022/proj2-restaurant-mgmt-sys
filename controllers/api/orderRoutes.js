@@ -1,4 +1,12 @@
+/** 
+ * These routes are all nested inside of the route:
+ * 
+ * /api/orders/... */
 const router = require("express").Router();
+
+
+//! express handles routes / server side data persistence (session/cookies)
+
 const { Orders, OrderItems, Items } = require("../../models");
 const withAuth = require("../../utils/auth");
 const logger = require("../../utils/logger.js");
@@ -70,7 +78,8 @@ router.post("/place-order", async (req, res) => {
     //   },
     //   orders: newOrders,
     // });
-    res.redirect(200, '/view-orders')
+    // res.redirect(200, '/view-orders')
+    res.status(200).json('success')
     // res.status(200).json("The order was placed");
   } catch (err) {
     res.status(400).json(err);

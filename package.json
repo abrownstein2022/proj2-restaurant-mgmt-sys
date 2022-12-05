@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed-database": "node seeds/seed.js",
+    "seed-database": "node seed.js",
     "watch//!": "(npm run watch VS npm start) This will start the server with nodemon (automatic restart on save)-beloiw --ext '*' means will watch all files incl handlebars",
     "watch": "nodemon --ext '*' server.js",
     "start//!": "used with older versions of heroku - just in case",
