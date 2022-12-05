@@ -151,7 +151,7 @@ Once logged in, the customer is sent to the landing page with 3 buttons: "Place 
 
 ![example image place order page menu](./public/images/place-order-page.jpg)
 
-![example image place order page order details](./public/images/tobedone.jpg)
+![example image place order page order details](./public/images/your-order.jpg)
 
 ![example image view past orders page](./public/images/view-orders-page.jpg)
 

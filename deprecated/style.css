@@ -1,0 +1,24 @@
+.header-container {
+    margin: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-container ul {
+    display: flex;
+}
+
+.header-container ul li {
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-container h2 {
+    margin: 20px;
+}
