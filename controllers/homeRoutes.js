@@ -180,7 +180,7 @@ try{
 //&                                                                                                                   
 //$ Use withAuth middleware to prevent access to route
 router.get('/place-order', 
-// withAuth,                  //~ COMMENTED OUT FOR TESTING 
+withAuth,                  //~ COMMENTED OUT withAuth FOR TESTING but put back 
 async (req, res) => {
   try {
     // TODO:
